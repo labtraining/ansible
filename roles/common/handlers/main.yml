@@ -1,0 +1,11 @@
+---
+#
+#
+- name: Generate locales
+  shell: /usr/sbin/locale-gen
+
+- name: Restart NTP
+  service: name=ntp state=restarted
+
+- name: Restart SSH
+  service: name=ssh state=restarted

@@ -1,0 +1,15 @@
+---
+# APT Repositories
+#
+- debug: var=common.apt
+  tags: debug
+
+- name: Add APT Repository
+  apt_repository: repo='deb {{ item.url }} {{ item.distro }} {{ item.components }}' state=present
+  with_items: apt.repo
+
+# Install Packages
+#
+- name: Install Common APT Packages
+  apt: name={{ item }} state=latest
+  with_items: apt.pkg

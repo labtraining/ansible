@@ -1,0 +1,15 @@
+---
+# Custom variables
+#
+
+# Common Role
+#
+# apt_repo:
+# apt_pkg:
+
+# locale_lang:
+# locale_tz:
+
+# ntp_hosts:
+
+# ssh_conf:

@@ -1,0 +1,5 @@
+---
+#
+#
+- name: Install Required Python Packages
+  raw: apt-get install -y python python-apt python-setuptools

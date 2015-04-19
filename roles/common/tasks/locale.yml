@@ -1,0 +1,21 @@
+---
+# Locale configuration
+#
+- name: Install locales
+  apt: name=locales state=latest
+
+- name: Set Default System Locale
+  template: src=default.locale.j2 dest=/etc/default/locale owner=root group=root mode=0644
+  notify: Generate locales
+
+# Timezone configuration
+#
+- name: Install tzdata
+  apt: name=tzdata state=latest
+
+- name: Remove static /etc/localtime
+  file: path=/etc/localtime state=absent
+
+- name: Create symlink to correct timezone
+  file: src=/usr/share/zoneinfo/{{ item }} dest=/etc/localtime state=link owner=root group=root
+  with_items: locale.tz

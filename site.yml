@@ -1,0 +1,12 @@
+---
+#
+#
+- name: Bootstrap host
+  hosts: all
+  roles: [bootstrap]
+  tags: bootstrap
+
+- name: Common host configuration
+  hosts: all
+  roles: [common]
+  tags: common

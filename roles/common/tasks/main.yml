@@ -1,0 +1,19 @@
+---
+
+# System configuration:
+#   Repositories & Packages
+#   Locale & TZ
+#   NTP
+#   SSH
+#
+- include: apt.yml
+  tags: apt
+
+- include: locale.yml
+  tags: locale
+
+- include: ntp.yml
+  tags: ntp
+
+- include: ssh.yml
+  tags: ssh

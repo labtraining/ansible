@@ -1,0 +1,59 @@
+---
+# Role values
+#
+apt:
+  repo: '{{ apt_repo | default(common_apt.repo) }}'
+  pkg: '{{ apt_pkg | default(common_apt.pkg) }}'
+
+locale:
+  lang: '{{ locale_lang | default(common_locale.lang) }}'
+  tz: '{{ locale_tz | default(common_locale.tz) }}'
+
+ntp:
+  hosts: '{{ ntp_hosts | default(common_ntp.hosts) }}'
+
+ssh:
+  conf: '{{ ssh_conf | default(common_ssh.conf) }}'
+
+# Default values
+#
+common_apt:
+  repo:
+    - distro: wheezy
+      url: http://mirror.bytemark.co.uk/debian
+      components: main
+
+    - distro: wheezy/updates
+      url: http://security.debian.org
+      components: main
+
+    - distro: wheezy-backports
+      url: http://mirror.bytemark.co.uk/debian
+      components: main
+
+  pkg:
+    - less
+    - nano
+    - rsync
+
+common_locale:
+  lang: en_GB.UTF-8
+  tz: Europe/London
+
+common_ntp:
+  hosts:
+    - 0.debian.pool.ntp.org
+    - 1.debian.pool.ntp.org
+    - 2.debian.pool.ntp.org
+    - 3.debian.pool.ntp.org
+
+common_ssh:
+  conf:
+    - find: (#)?PasswordAuthentication
+      replace: PasswordAuthentication yes
+
+    - find: UseDNS
+      replace: UseDNS no
+
+    - find: (#)?PermitRootLogin
+      replace: PermitRootLogin yes

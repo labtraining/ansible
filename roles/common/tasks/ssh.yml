@@ -1,0 +1,7 @@
+---
+# SSH server security
+#
+- name: SSH Server Configuration
+  lineinfile: dest=/etc/ssh/sshd_config regexp='{{ item.find }}' line='{{ item.replace }}'
+  with_items: ssh.conf
+  notify: Restart SSH
